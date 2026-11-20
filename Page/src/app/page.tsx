@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Bot, Boxes, ChevronDown, Code2, Cpu, Database, Menu, MessageCircle, Network, Palette, Play, ShieldCheck, Sparkles, X, Zap } from "lucide-react";
+import { ArrowRight, Bot, Boxes, Camera, ChevronDown, Code2, Cog, Cpu, Database, Menu, MessageCircle, Network, Palette, Play, ShieldCheck, Sparkles, Wrench, X, Zap } from "lucide-react";
 
 const themes = [
   ["Ocean", "#16d5f3", "#1688ff"],
@@ -26,12 +26,17 @@ const copy = {
     visual: ["Desarrollo", "ERP", "IA", "Integracion"],
     servicesKicker: "NUESTROS SERVICIOS",
     servicesTitle: "Soluciones creadas para impulsar tu negocio",
-    servicesIntro: "Arquitecturas robustas, experiencias modernas y tecnologia que crece contigo.",
+    servicesIntro: "Soluciones digitales, seguridad electronica y soporte tecnico profesional para tu hogar o negocio.",
     services: [
-      ["Desarrollo de software", "Aplicaciones web, plataformas empresariales y sistemas administrativos personalizados."],
-      ["Sistemas ERP", "Controla inventarios, finanzas, compras, ventas, nomina y operaciones desde un solo lugar."],
-      ["APIs e integraciones", "Conecta plataformas, automatiza procesos y construye arquitecturas backend escalables."],
-      ["Inteligencia artificial", "Chatbots, asistentes virtuales, agentes y automatizaciones inteligentes para tu empresa."],
+      { Icon: Code2, title: "Desarrollo de software", description: "Aplicaciones web, plataformas empresariales y sistemas administrativos personalizados." },
+      { Icon: Boxes, title: "Sistemas ERP", description: "Controla inventarios, finanzas, compras, ventas, nomina y operaciones desde un solo lugar." },
+      { Icon: Cpu, title: "APIs e integraciones", description: "Conecta plataformas, automatiza procesos y construye arquitecturas backend escalables." },
+      { Icon: Bot, title: "Inteligencia artificial", description: "Chatbots, asistentes virtuales, agentes y automatizaciones inteligentes para tu empresa." },
+      { Icon: Camera, title: "Camaras de seguridad", description: "Instalacion profesional, configuracion y monitoreo en tiempo real desde tu celular o central." },
+      { Icon: ShieldCheck, title: "Alarmas y cercos electricos", description: "Instalacion y configuracion de sistemas de seguridad para hogares, comercios y empresas." },
+      { Icon: Network, title: "Configuracion de redes", description: "Configuracion de redes cableadas e inalambricas, optimizacion y soporte tecnico." },
+      { Icon: Cog, title: "Motores para puertas", description: "Instalacion, configuracion y mantenimiento de motores para puertas y portones electricos." },
+      { Icon: Wrench, title: "Computadoras y mantenimiento", description: "Mantenimiento preventivo, optimizacion y soporte tecnico para computadoras." },
     ],
     explore: "Explorar servicio",
     aiKicker: "INTELIGENCIA ARTIFICIAL",
@@ -81,12 +86,17 @@ const copy = {
     visual: ["Development", "ERP", "AI", "Integration"],
     servicesKicker: "OUR SERVICES",
     servicesTitle: "Solutions created to grow your business",
-    servicesIntro: "Robust architectures, modern experiences and technology that grows with you.",
+    servicesIntro: "Digital solutions, electronic security and professional technical support for your home or business.",
     services: [
-      ["Software development", "Web applications, enterprise platforms and custom administrative systems."],
-      ["ERP systems", "Control inventory, finance, purchasing, sales, payroll and operations from one place."],
-      ["APIs and integrations", "Connect platforms, automate processes and build scalable backend architectures."],
-      ["Artificial intelligence", "Chatbots, virtual assistants, agents and intelligent automation for your company."],
+      { Icon: Code2, title: "Software development", description: "Web applications, enterprise platforms and custom administrative systems." },
+      { Icon: Boxes, title: "ERP systems", description: "Control inventory, finance, purchasing, sales, payroll and operations from one place." },
+      { Icon: Cpu, title: "APIs and integrations", description: "Connect platforms, automate processes and build scalable backend architectures." },
+      { Icon: Bot, title: "Artificial intelligence", description: "Chatbots, virtual assistants, agents and intelligent automation for your company." },
+      { Icon: Camera, title: "Security cameras", description: "Professional installation, setup and real-time monitoring from your phone or control center." },
+      { Icon: ShieldCheck, title: "Alarm systems and electric fences", description: "Installation and configuration of security systems for homes, shops and businesses." },
+      { Icon: Network, title: "Network configuration", description: "Wired and wireless network setup, optimization and technical support." },
+      { Icon: Cog, title: "Gate motors", description: "Installation, setup and maintenance of motors for electric doors and gates." },
+      { Icon: Wrench, title: "Computers and maintenance", description: "Preventive maintenance, optimization and technical support for computers." },
     ],
     explore: "Explore service",
     aiKicker: "ARTIFICIAL INTELLIGENCE",
@@ -242,13 +252,8 @@ export default function Home() {
         <section className="section" id="servicios">
           <div className="section-heading reveal-on-scroll" data-reveal="up"><div><span className="kicker">{t.servicesKicker}</span><h2>{t.servicesTitle}</h2></div><p>{t.servicesIntro}</p></div>
           <div className="services-grid">
-            {[
-              { Icon: Code2, title: t.services[0][0], copy: t.services[0][1] },
-              { Icon: Boxes, title: t.services[1][0], copy: t.services[1][1] },
-              { Icon: Cpu, title: t.services[2][0], copy: t.services[2][1] },
-              { Icon: Bot, title: t.services[3][0], copy: t.services[3][1] },
-            ].map(({ Icon, title, copy }) => (
-              <article className="service-card reveal-on-scroll" data-reveal="up" key={title}><div className="service-icon"><Icon size={26} /></div><h3>{title}</h3><p>{copy}</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">{t.explore} <ArrowRight size={15} /></a></article>
+            {t.services.map(({ Icon, title, description }) => (
+              <article className="service-card reveal-on-scroll" data-reveal="up" key={title}><div className="service-icon"><Icon size={26} /></div><h3>{title}</h3><p>{description}</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">{t.explore} <ArrowRight size={15} /></a></article>
             ))}
           </div>
         </section>
@@ -320,7 +325,7 @@ export default function Home() {
       </main>
       <footer className="footer">
         <div className="footer-brand reveal-on-scroll" data-reveal="up"><img src="/nexora-logo.png" alt="Nexora Technologies" /><p>{t.footerText}</p></div>
-        <div className="reveal-on-scroll" data-reveal="up"><strong>{t.footerServices}</strong><a href="#servicios">{t.services[0][0]}</a><a href="#servicios">{t.services[1][0]}</a><a href="#ia">{t.services[3][0]}</a></div>
+        <div className="reveal-on-scroll" data-reveal="up"><strong>{t.footerServices}</strong><a href="#servicios">{t.services[0].title}</a><a href="#servicios">{t.services[4].title}</a><a href="#ia">{t.services[3].title}</a></div>
         <div className="reveal-on-scroll" data-reveal="up"><strong>{t.footerCompany}</strong><a href="#proyectos">{t.nav[4]}</a><a href="#nosotros">{t.nav[5]}</a><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">{t.footerContact}</a></div>
         <div className="reveal-on-scroll" data-reveal="up"><strong>{t.footerContact}</strong><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">+1 829 916 0676</a><span>Technology that transforms businesses.</span></div>
       </footer>
